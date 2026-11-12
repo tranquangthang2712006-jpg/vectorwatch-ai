@@ -4,7 +4,9 @@ Nền tảng hỗ trợ **giám sát điều kiện môi trường thuận lợi
 
 > ⚠️ **Phạm vi:** Hệ thống KHÔNG chẩn đoán bệnh, KHÔNG dự đoán ca bệnh hoặc kết luận đang có dịch, KHÔNG khẳng định có véc-tơ chỉ từ dữ liệu thời tiết. Toàn bộ dữ liệu demo là **dữ liệu mẫu/giả lập**. Trọng số và ngưỡng chấm điểm là minh họa, chưa được chuyên gia thẩm định.
 
-**Bản online:** https://vectorwatch-ai.onrender.com · tài khoản `officer@vectorwatch.local` · mật khẩu `VW-demo-2026!` (chi tiết ở mục 7)
+**Bản online:** https://vectorwatch-ai.onrender.com · tài khoản `officer@vectorwatch.local` · mật khẩu bản online được gửi kèm hồ sơ nộp, không ghi trong repo (chi tiết ở mục 7)
+
+**Phiên bản dùng để demo:** tag [`v1.0.0-demo`](https://github.com/tranquangthang2712006-jpg/vectorwatch-ai/releases/tag/v1.0.0-demo)
 
 ## Mục lục
 
@@ -126,14 +128,14 @@ cp .env.example .env
 
 | Biến | Mặc định | Ý nghĩa |
 |---|---|---|
-| `VW_DEMO_PASSWORD` | `VW-demo-2026!` | Mật khẩu chung của 4 tài khoản demo. Để trống thì hệ thống tự sinh mật khẩu ngẫu nhiên và in ra màn hình ở lần tạo dữ liệu đầu tiên |
+| `VW_DEMO_PASSWORD` | `doi-mat-khau-demo-nay` (giá trị giả) | Mật khẩu chung của 4 tài khoản demo, **hãy đổi** thành mật khẩu của bạn. Để trống thì hệ thống tự sinh mật khẩu ngẫu nhiên và in ra màn hình ở lần tạo dữ liệu đầu tiên |
 | `VW_SECRET_KEY` | (trống) | Khóa ký token đăng nhập. Để trống thì sinh ngẫu nhiên mỗi lần khởi động, nên phải đăng nhập lại sau khi khởi động lại máy chủ. Khi đưa lên mạng nên đặt một chuỗi ngẫu nhiên dài |
 | `VW_STEP_DELAY` | `0.9` | Số giây chờ giữa các bước workflow Agent để người xem theo dõi được; `0` là chạy nhanh nhất |
 | `VW_LLM_PROVIDER` | `simulated` | `simulated` (mô phỏng theo luật) hoặc `openai_compatible` (LLM thật, xem Phụ lục B) |
 | `VW_LLM_BASE_URL`, `VW_LLM_MODEL`, `VW_LLM_API_KEY`, `VW_LLM_TIMEOUT` | trống / 20 | Chỉ dùng khi bật LLM thật |
 | `VW_DB_PATH` | `backend/data/vectorwatch.db` | Đường dẫn file SQLite (tùy chọn) |
 
-**Không đưa file `.env` thật lên GitHub hay gửi cho người khác** (đã có trong `.gitignore`). Mã nguồn không chứa khóa hay mật khẩu nào, ngoài mật khẩu demo của dữ liệu mẫu.
+**Không đưa file `.env` thật lên GitHub hay gửi cho người khác** (đã có trong `.gitignore`). `.env.example` chỉ chứa tên biến và giá trị mẫu giả; repository không chứa khóa API, token hay mật khẩu thật.
 
 ---
 
@@ -205,7 +207,10 @@ Hoặc tắt máy chủ, xóa file `backend/data/vectorwatch.db`, rồi khởi �
 
 ## 7. Đăng nhập và chạy kịch bản mẫu
 
-**Mật khẩu chung cho cả 4 tài khoản: `VW-demo-2026!`** (giá trị `VW_DEMO_PASSWORD`). Dùng chung cho bản online và bản chạy trên máy.
+**Mật khẩu chung cho cả 4 tài khoản:**
+
+- **Chạy trên máy:** giá trị `VW_DEMO_PASSWORD` trong file `.env` của bạn (nếu chưa sửa thì là `doi-mat-khau-demo-nay`).
+- **Bản online:** được gửi kèm hồ sơ nộp, không ghi trong repository.
 
 | Tài khoản | Vai trò | Quyền |
 |---|---|---|
@@ -342,7 +347,7 @@ Bản online được triển khai trên [Render](https://render.com), gói Free
 | Start Command | `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
 | Compute | $0 / month (Free) |
 | Health Check Path | `/api/health` |
-| Environment Variables | `PYTHON_VERSION=3.12.7`, `VW_DEMO_PASSWORD=VW-demo-2026!`, `VW_SECRET_KEY` (bấm **Generate**), `VW_STEP_DELAY=0.9` |
+| Environment Variables | `PYTHON_VERSION=3.12.7`, `VW_DEMO_PASSWORD=<mật khẩu tự đặt>`, `VW_SECRET_KEY` (bấm **Generate**), `VW_STEP_DELAY=0.9` |
 
 4. Bấm **Deploy web service**, chờ trạng thái **Live** (3–5 phút). Link nằm ở đầu trang của service.
 
