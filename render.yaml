@@ -1,0 +1,24 @@
+# Render Blueprint — triển khai VectorWatch AI thành một web service (gói miễn phí).
+# Backend FastAPI phục vụ luôn giao diện đã build sẵn ở frontend/dist.
+services:
+  - type: web
+    name: vectorwatch-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      # Khóa ký token đăng nhập: Render tự sinh ngẫu nhiên, không nằm trong mã nguồn.
+      - key: VW_SECRET_KEY
+        generateValue: true
+      # Mật khẩu chung cho 4 tài khoản demo: Render hỏi bạn nhập khi tạo Blueprint.
+      - key: VW_DEMO_PASSWORD
+        sync: false
+      - key: VW_STEP_DELAY
+        value: "0.9"
+      - key: VW_LLM_PROVIDER
+        value: simulated

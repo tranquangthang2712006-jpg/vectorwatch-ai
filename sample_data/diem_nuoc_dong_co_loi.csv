@@ -1,0 +1,7 @@
+﻿code,latitude,longitude,water_type,status,persistence_days,observed_date,notes,source
+,21.05123,105.80435,Lốp xe cũ,active,4,2026-11-11,Bãi đất trống,Khảo sát mẫu (giả lập)
+,21.05323,105.80135,Chum/vại chứa nước,active,7,2026-11-10,,Khảo sát mẫu (giả lập)
+,105.80435,21.05123,Vũng nước,active,3,2026-11-11,Đảo vĩ độ/kinh độ,Khảo sát mẫu (giả lập)
+,10.7769,106.7009,Cống rãnh,active,2,2026-11-11,Ngoài khu vực thí điểm,Khảo sát mẫu (giả lập)
+,95.2,105.80435,Vũng nước,active,,2026-11-11,Vĩ độ không hợp lệ,Khảo sát mẫu (giả lập)
+,21.04007,105.83456,,dang xu ly,x,2026-11-11,"Thiếu loại, sai trạng thái",Khảo sát mẫu (giả lập)

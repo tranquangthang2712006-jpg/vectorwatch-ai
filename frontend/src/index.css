@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --color-navy-900: #0b1f38;
+  --color-navy-800: #0f2a4a;
+  --color-navy-700: #17385f;
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #d9e8ff;
+  --color-brand-500: #2f6fe4;
+  --color-brand-600: #1d5fd1;
+  --color-brand-700: #184eae;
+}
+
+html, body, #root { height: 100%; }
+body { @apply bg-slate-100 text-slate-800 antialiased; font-size: 14px; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+
+.input { @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm; }
+.input:focus { @apply border-brand-500 outline-none ring-2 ring-brand-100; }
+.input:disabled { @apply bg-slate-100 text-slate-400; }
+.th { @apply px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500 whitespace-nowrap; }
+.td { @apply px-3 py-2 align-top text-sm text-slate-700; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Leaflet */
+.leaflet-container { font-family: var(--font-sans); border-radius: 0.75rem; z-index: 0; }
+.area-label { background: rgba(255,255,255,.92); border: 1px solid #cbd5e1; border-radius: 6px; padding: 1px 6px;
+  font-weight: 600; font-size: 11px; color: #0f172a; box-shadow: none; white-space: nowrap; }
+.area-label::before { display: none; }
+.vw-marker { background: none; border: none; }
+.leaflet-popup-content { margin: 12px 14px; font-size: 12.5px; line-height: 1.45; min-width: 230px; }
+
+@keyframes vw-spin { to { transform: rotate(360deg); } }
+.spin { animation: vw-spin 0.9s linear infinite; }
+@keyframes vw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+.pulse { animation: vw-pulse 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .spin, .pulse { animation: none; } }
+
+/* In báo cáo → Lưu PDF */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-area { box-shadow: none !important; border: none !important; padding: 0 !important; }
+  .print-root { overflow: visible !important; height: auto !important; }
+  .avoid-break { break-inside: avoid; }
+}

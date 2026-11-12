@@ -1,0 +1,4 @@
+﻿code,latitude,longitude,survey_date,species,result,vector_count,notes,source
+,21.05023,105.80535,2026-11-11,aedes,larvae_present,14,Bọ gậy trong lốp xe,Khảo sát mẫu (giả lập)
+,21.03965,105.78883,2026-11-11,aedes,none_found,0,Đã kiểm tra 6 dụng cụ chứa nước,Khảo sát mẫu (giả lập)
+,21.03665,105.78983,2026-11-10,aedes,adult_present,5,,Khảo sát mẫu (giả lập)

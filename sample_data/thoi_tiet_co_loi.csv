@@ -1,0 +1,7 @@
+﻿area_code,date,rainfall_mm,temperature_c,humidity_pct,source
+KV-B,2026-10-03,4.5,26.1,66,Tệp mẫu có lỗi (giả lập)
+KV-ZZ,2026-10-03,10,27,70,Tệp mẫu có lỗi (giả lập)
+KV-C,32/13/2026,10,27,70,Tệp mẫu có lỗi (giả lập)
+KV-C,2026-10-02,-5,27,140,Tệp mẫu có lỗi (giả lập)
+KV-F,2026-10-02,,,,Tệp mẫu có lỗi (giả lập)
+KV-H,2026-10-02,,25.4,,Tệp mẫu có lỗi (giả lập)
