@@ -128,7 +128,7 @@ cp .env.example .env
 
 | Biến | Mặc định | Ý nghĩa |
 |---|---|---|
-| `VW_DEMO_PASSWORD` | `doi-mat-khau-demo-nay` (giá trị giả) | Mật khẩu chung của 4 tài khoản demo, **hãy đổi** thành mật khẩu của bạn. Để trống thì hệ thống tự sinh mật khẩu ngẫu nhiên và in ra màn hình ở lần tạo dữ liệu đầu tiên |
+| `VW_DEMO_PASSWORD` | `replace-with-a-local-demo-password` (giá trị giả) | Mật khẩu chung của 4 tài khoản demo, **hãy đổi** thành mật khẩu của bạn. Để trống thì hệ thống tự sinh mật khẩu ngẫu nhiên và in ra màn hình ở lần tạo dữ liệu đầu tiên |
 | `VW_SECRET_KEY` | (trống) | Khóa ký token đăng nhập. Để trống thì sinh ngẫu nhiên mỗi lần khởi động, nên phải đăng nhập lại sau khi khởi động lại máy chủ. Khi đưa lên mạng nên đặt một chuỗi ngẫu nhiên dài |
 | `VW_STEP_DELAY` | `0.9` | Số giây chờ giữa các bước workflow Agent để người xem theo dõi được; `0` là chạy nhanh nhất |
 | `VW_LLM_PROVIDER` | `simulated` | `simulated` (mô phỏng theo luật) hoặc `openai_compatible` (LLM thật, xem Phụ lục B) |
@@ -209,7 +209,7 @@ Hoặc tắt máy chủ, xóa file `backend/data/vectorwatch.db`, rồi khởi �
 
 **Mật khẩu chung cho cả 4 tài khoản:**
 
-- **Chạy trên máy:** giá trị `VW_DEMO_PASSWORD` trong file `.env` của bạn (nếu chưa sửa thì là `doi-mat-khau-demo-nay`).
+- **Chạy trên máy:** giá trị `VW_DEMO_PASSWORD` trong file `.env` của bạn (nếu chưa sửa thì là `replace-with-a-local-demo-password`).
 - **Bản online:** được gửi kèm hồ sơ nộp, không ghi trong repository.
 
 | Tài khoản | Vai trò | Quyền |
