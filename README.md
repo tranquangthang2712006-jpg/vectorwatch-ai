@@ -19,6 +19,8 @@ Nền tảng hỗ trợ **giám sát điều kiện môi trường thuận lợi
 9. [Lỗi thường gặp và cách xử lý](#9-lỗi-thường-gặp-và-cách-xử-lý)
 10. [Nguồn dữ liệu, giấy phép, thành phần kế thừa và giới hạn](#10-nguồn-dữ-liệu-giấy-phép-thành-phần-kế-thừa-và-giới-hạn)
 
+**Nhóm thực hiện:** Thảo, Thành, Thắng, Tâm, Việt. Phân công chi tiết và quy ước Git: [PHAN_CONG.md](PHAN_CONG.md).
+
 Phụ lục: [A. Đưa lên mạng bằng Render](#phụ-lục-a-đưa-lên-mạng-bằng-render) · [B. Bật LLM thật](#phụ-lục-b-bật-llm-thật-tùy-chọn) · [C. Cấu trúc thư mục](#phụ-lục-c-cấu-trúc-thư-mục)
 
 ---
