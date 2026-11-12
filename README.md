@@ -4,6 +4,21 @@ Hệ thống hỗ trợ giám sát môi trường thuận lợi cho véc-tơ tru
 
 > ⚠️ **Phạm vi:** Hệ thống KHÔNG chẩn đoán bệnh, KHÔNG dự đoán ca bệnh hoặc kết luận đang có dịch, KHÔNG khẳng định có véc-tơ chỉ từ dữ liệu thời tiết. Toàn bộ dữ liệu demo là **dữ liệu mẫu/giả lập**. "Chưa khảo sát" không được dùng làm bằng chứng không có véc-tơ. Trọng số/ngưỡng chấm điểm là minh hoạ, chưa được chuyên gia thẩm định.
 
+## Dùng ngay bản online
+
+**Link:** https://vectorwatch-ai.onrender.com
+
+| Tài khoản | Vai trò |
+|---|---|
+| `officer@vectorwatch.local` | Cán bộ giám sát — có quyền phê duyệt cảnh báo (nên dùng để demo) |
+| `analyst@vectorwatch.local` | Chuyên viên phân tích — tạo nhiệm vụ, nhập dữ liệu, không được duyệt |
+| `admin@vectorwatch.local` | Quản trị — mọi quyền |
+| `viewer@vectorwatch.local` | Người xem / giám khảo — chỉ xem |
+
+**Mật khẩu chung cho cả 4 tài khoản:** `VW-demo-2026!`
+
+Bản online chạy trên gói miễn phí của Render: lần mở đầu tiên sau một lúc không ai dùng có thể chờ 30–60 giây; dữ liệu trở về dữ liệu mẫu mỗi khi máy chủ khởi động lại.
+
 ## Kiến trúc tóm tắt
 
 - **Backend:** FastAPI + SQLite thuần (không ORM), token tự ký (HMAC), phân quyền theo vai trò (admin/analyst/officer/viewer).
@@ -34,7 +49,7 @@ Hệ thống hỗ trợ giám sát môi trường thuận lợi cho véc-tơ tru
    - Cài các package trong `backend\requirements.txt`
    - Khởi động server tại `http://127.0.0.1:8000`
 4. Mở trình duyệt vào `http://127.0.0.1:8000` — server đã mount sẵn `frontend/dist` nên **không cần cài Node.js** để chạy demo.
-5. Đăng nhập bằng 1 trong 4 tài khoản demo (email hiển thị ở trang đăng nhập, mật khẩu là giá trị `VW_DEMO_PASSWORD` trong file `.env`, mặc định `vectorwatch-demo`):
+5. Đăng nhập bằng 1 trong 4 tài khoản demo (email hiển thị ở trang đăng nhập, mật khẩu chung **`VW-demo-2026!`** — giá trị `VW_DEMO_PASSWORD` trong file `.env`):
    - `admin@vectorwatch.local`
    - `analyst@vectorwatch.local`
    - `officer@vectorwatch.local` (có quyền phê duyệt cảnh báo)
@@ -72,16 +87,39 @@ Kỳ vọng: 62 test pass (bộ 6 test case TC01–TC06 theo đặc tả, test t
 
 Có thể xem và chạy lại 6 test case (TC01–TC06) ngay trên giao diện: trang **Báo cáo và đánh giá → tab Đánh giá**.
 
-## Đưa lên mạng bằng Render (link công khai)
+## Đưa lên mạng bằng Render (cách bản online đang chạy)
 
-Dự án có sẵn file `render.yaml` để triển khai lên [Render](https://render.com) gói miễn phí:
+Bản online được triển khai trên [Render](https://render.com), gói Free, khu vực Singapore, tự cập nhật mỗi khi đẩy code lên nhánh `main` của GitHub. Để triển khai lại ở tài khoản khác:
 
-1. Đưa mã nguồn lên một repository GitHub (không có `.env`, `node_modules`, `.venv`).
-2. Đăng nhập Render bằng GitHub → **New → Blueprint** → chọn repository → Render đọc `render.yaml`.
-3. Render hỏi giá trị **`VW_DEMO_PASSWORD`**: nhập mật khẩu demo mới (không dùng `vectorwatch-demo` cho bản công khai). `VW_SECRET_KEY` được Render tự sinh.
-4. Bấm **Deploy Blueprint**, chờ trạng thái *Live*, rồi mở link dạng `https://vectorwatch-ai-xxxx.onrender.com`.
+1. Đưa mã nguồn lên GitHub (không có `.env`, `node_modules`, `.venv`).
+2. Đăng nhập Render bằng GitHub. Render **yêu cầu thêm thẻ Visa/Mastercard** đã bật thanh toán quốc tế để xác minh (giữ tạm 1 USD rồi hoàn lại), kể cả với gói Free.
+3. **New → Web Service** → chọn repository, rồi điền:
 
-Lưu ý gói miễn phí: máy chủ ngủ sau khoảng 15 phút không có truy cập, lần mở sau chờ khoảng 30–60 giây; ổ đĩa không lưu lâu dài nên mỗi lần khởi động lại dữ liệu trở về dữ liệu mẫu ban đầu. Mỗi lần đẩy code mới lên nhánh `main`, Render tự triển khai lại.
+| Mục | Giá trị |
+|---|---|
+| Language | Python 3 |
+| Branch | `main` |
+| Region | Singapore |
+| Root Directory | để trống |
+| Build Command | `pip install -r backend/requirements.txt` |
+| Start Command | `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| Compute | $0 / month (Free) |
+| Health Check Path | `/api/health` |
+
+4. Environment Variables:
+
+| KEY | VALUE |
+|---|---|
+| `PYTHON_VERSION` | `3.12.7` |
+| `VW_DEMO_PASSWORD` | `VW-demo-2026!` |
+| `VW_SECRET_KEY` | bấm **Generate** |
+| `VW_STEP_DELAY` | `0.9` |
+
+5. Bấm **Deploy web service**, chờ trạng thái **Live** (khoảng 3–5 phút), link nằm ở đầu trang của service.
+
+Cách khác: **New → Blueprint** dùng file `render.yaml` có sẵn trong dự án (Render sẽ hỏi giá trị `VW_DEMO_PASSWORD`).
+
+Đổi mật khẩu bản online: Render → service → **Environment** → sửa `VW_DEMO_PASSWORD` → **Save, rebuild and deploy**. Vì dữ liệu được tạo lại mỗi lần khởi động, mật khẩu mới có hiệu lực ngay sau khi triển khai xong.
 
 ## Bật LLM thật (tùy chọn)
 
@@ -116,10 +154,10 @@ Vào **Quản lý dữ liệu → Nhập dữ liệu → Tải file lên**, ch�
 
 Xem `.env.example`. Các biến chính:
 
-- `VW_DEMO_PASSWORD` — mật khẩu chung cho 4 tài khoản demo (mặc định `vectorwatch-demo`; nếu xoá dòng này, hệ thống tự sinh và in ra console khi tạo dữ liệu lần đầu). Đổi mật khẩu sau khi đã chạy: `cd backend && python -m app.seed --reset`
+- `VW_DEMO_PASSWORD` — mật khẩu chung cho 4 tài khoản demo (mặc định `VW-demo-2026!`; nếu xoá dòng này, hệ thống tự sinh và in ra console khi tạo dữ liệu lần đầu). Đổi mật khẩu sau khi đã chạy: `cd backend && python -m app.seed --reset`
 - `VW_SECRET_KEY` — khoá ký token, nên đặt giá trị riêng khi triển khai thật
 - `VW_STEP_DELAY` — độ trễ giả lập giữa các bước Agent (giây), phục vụ demo trực quan
-- `VW_LLM_PROVIDER` — hiện chỉ hỗ trợ `simulated`; để tích hợp LLM thật cần tự triển khai thêm (xem phần dưới)
+- `VW_LLM_PROVIDER` — `simulated` (mặc định) hoặc `openai_compatible` (xem mục *Bật LLM thật*)
 
 **Không commit file `.env` thật** (đã có trong `.gitignore`); ZIP này không chứa `.env`, chỉ chứa `.env.example`.
 

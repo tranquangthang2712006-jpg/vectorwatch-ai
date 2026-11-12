@@ -45,7 +45,7 @@ export default function Login() {
               {(accounts.data || [{ email, role_label: '' }]).map((a) => <option key={a.email} value={a.email}>{a.email}{a.role_label ? ` — ${a.role_label}` : ''}</option>)}
             </select>
           </Field>
-          <Field label="Mật khẩu" hint="Giá trị VW_DEMO_PASSWORD trong file .env (xem README).">
+          <Field label="Mật khẩu" hint="Mật khẩu demo chung cho cả 4 tài khoản (xem README).">
             <input className="input" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} autoFocus />
           </Field>
           {accounts.error && <Notice tone="danger">{accounts.error}</Notice>}
